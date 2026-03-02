@@ -22,6 +22,12 @@ export const createApiClient = (apiKey, baseURL) => {
       if (error.response && error.response.status === 401) {
         throw new Error('NyontraSDK: Invalid API Key');
       }
+      if (error.response && error.response.status === 403 && error.response.data?.error === 'Feature Disabled') {
+        throw new Error('NyontraSDK: This feature is currently disabled by the gateway administrator.');
+      }
+      if (error.response && error.response.status === 504) {
+        throw new Error('NyontraSDK: Blockchain Gateway Timeout');
+      }
       return Promise.reject(error);
     }
   );
