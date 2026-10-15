@@ -1,0 +1,44 @@
+{
+  "name": "@nyontra/sdk",
+  "version": "0.1.0",
+  "description": "Official Nyontra JavaScript/TypeScript SDK — local secp256k1 key management, canonical transaction signing, and an HTTP client for the rpc.nyontra.com gateway",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "sideEffects": false,
+  "scripts": {
+    "build": "tsc",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "keywords": [
+    "nyontra",
+    "ledger",
+    "sdk",
+    "signing"
+  ],
+  "license": "UNLICENSED",
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "ethers": "^6.13.4"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "typescript": "^5.9.2",
+    "viem": "^2.57.5",
+    "vitest": "^3.0.0"
+  }
+}
