@@ -51,13 +51,11 @@ export interface BroadcastResponse {
   idempotent?: boolean;
 }
 
-/** Account JSON from GET /core/v1/account/:address (locked/history fields are inert constants). */
+/** Account JSON from GET /core/v1/account/:address. */
 export interface AccountJson {
   address: string;
   name: string | null;
   balance: number;
-  lockedBalance: number;
-  lockRecords: unknown[];
   /** Permission bitmask (MANAGE_ROLES=1, MINT=2, SET_PRICE=4, API=8, ESCROW_SIGN=16, VIEW_ALL_HISTORY=64, VALIDATOR=256). */
   permissions: number;
   /** Current account nonce — use as the `nonce` of the next transaction. */

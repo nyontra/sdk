@@ -41,8 +41,6 @@ const accountJson = (nonce: number) =>
     address: "0x1111111111111111111111111111111111111111",
     name: null,
     balance: 1000,
-    lockedBalance: 0,
-    lockRecords: [],
     permissions: 0,
     nonce,
     history: [],
