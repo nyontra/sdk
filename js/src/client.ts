@@ -1,9 +1,10 @@
 /**
- * HTTP client for the public Nyontra gateway (https://rpc.nyontra.com).
+ * HTTP client for the Nyontra Dev Portal Backend (gateway).
  *
- * No API keys: writes are authorized by the transaction signature itself, and
- * permission-checked reads use the optional X-Nyontra-Requester header (self
- * lookup or VIEW_ALL_HISTORY permission). CORS on the gateway is open.
+ * All developer traffic flows through the gateway, which authenticates your
+ * project with an API key and applies rate limits before proxying to the
+ * Nyontra core network. Writes are authorized by the transaction signature
+ * itself; permission-checked reads use the optional X-Nyontra-Requester header.
  *
  * Runs anywhere fetch exists (Node ≥ 18, browsers, workers); a custom fetch
  * implementation can be injected for testing or non-standard runtimes.
@@ -13,12 +14,16 @@ import type { Account } from "./account.js";
 import type { SignedTx } from "./transaction.js";
 import { signTx } from "./transaction.js";
 
-/** Default public gateway. */
-export const DEFAULT_GATEWAY_URL = "https://rpc.nyontra.com";
+/** Default dev-portal backend (gateway) URL. */
+export const DEFAULT_GATEWAY_URL = "http://localhost:8080";
 
 export interface NyontraClientOptions {
-  /** Gateway base URL. Defaults to https://rpc.nyontra.com */
+  /** Dev Portal Backend (gateway) base URL. Defaults to http://localhost:8080. */
   gatewayUrl?: string;
+  /** Developer API key obtained from the Dev Portal. When set, every request
+   *  includes an `x-api-key` header so api can authenticate the project
+   *  and apply rate limits. */
+  apiKey?: string;
   /** Requester address sent as X-Nyontra-Requester on reads (self/auditor checks). */
   requester?: string;
   /** Custom fetch (testing / non-standard runtimes). Defaults to globalThis.fetch. */
@@ -112,12 +117,14 @@ export class NyontraApiError extends Error {
 }
 export class NyontraClient {
   readonly gatewayUrl: string;
+  private readonly apiKey?: string;
   private readonly requester?: string;
   private readonly fetchFn: typeof fetch;
 
   constructor(options: NyontraClientOptions | string = {}) {
     const opts = typeof options === "string" ? { gatewayUrl: options } : options;
     this.gatewayUrl = (opts.gatewayUrl ?? DEFAULT_GATEWAY_URL).replace(/\/+$/, "");
+    this.apiKey = opts.apiKey;
     this.requester = opts.requester;
     this.fetchFn = opts.fetch ?? globalThis.fetch?.bind(globalThis);
     if (!this.fetchFn) {
@@ -236,6 +243,7 @@ export class NyontraClient {
   ): Promise<string> {
     const headers: Record<string, string> = {};
     if (body !== undefined) headers["Content-Type"] = "application/json";
+    if (this.apiKey) headers["x-api-key"] = this.apiKey;
     const req = requester ?? this.requester;
     if (req) headers["X-Nyontra-Requester"] = req;
 
