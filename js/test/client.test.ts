@@ -8,7 +8,7 @@ import { Account } from "../src/account.js";
 import { NyontraApiError, NyontraClient } from "../src/client.js";
 import { buildSignMessage } from "../src/signing.js";
 
-const GATEWAY = "https://rpc.nyontra.com";
+const GATEWAY = "https://core.nyontra.com";
 const BOB = "0x2222222222222222222222222222222222222222";
 
 interface RecordedRequest {
