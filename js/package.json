@@ -1,3 +1,4 @@
+
 {
   "name": "@nyontra/sdk",
   "version": "0.1.0",
@@ -13,7 +14,8 @@
   },
   "files": [
     "dist",
-    "README.md"
+    "README.md",
+    "LICENSE"
   ],
   "sideEffects": false,
   "scripts": {
@@ -28,7 +30,16 @@
     "sdk",
     "signing"
   ],
-  "license": "UNLICENSED",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nyontra/sdk.git",
+    "directory": "js"
+  },
+  "homepage": "https://github.com/nyontra/sdk#readme",
+  "bugs": {
+    "url": "https://github.com/nyontra/sdk/issues"
+  },
   "engines": {
     "node": ">=18"
   },
