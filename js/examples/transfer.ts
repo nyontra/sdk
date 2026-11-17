@@ -6,12 +6,12 @@
  *
  * Omit NYONTRA_PRIVATE_KEY to generate a throwaway account (its mnemonic is
  * printed once — fund it from a genesis/holder address to make a transfer).
- * The gateway is the public chain endpoint: https://core.nyontra.com
+ * The gateway is the public chain endpoint: https://api.nyontra.com
  */
 
 import { Account, NyontraClient, NyontraApiError } from "../src/index.js";
 
-const GATEWAY_URL = process.env.NYONTRA_GATEWAY_URL ?? "https://core.nyontra.com";
+const GATEWAY_URL = process.env.NYONTRA_GATEWAY_URL ?? "https://api.nyontra.com";
 
 async function main(): Promise<void> {
   const [to, amountArg] = process.argv.slice(2);

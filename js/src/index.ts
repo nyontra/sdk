@@ -3,7 +3,7 @@
  *
  * Local secp256k1 key management + canonical transaction signing (byte-exact
  * parity with the core chain signer) + HTTP client for the public gateway
- * at https://core.nyontra.com.
+ * at https://api.nyontra.com.
  */
 
 export { Account, type Keypair } from "./account.js";

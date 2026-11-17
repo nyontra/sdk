@@ -1,7 +1,7 @@
 # Nyontra SDKs
 
 Official client SDKs for the Nyontra network. All SDKs implement the same
-contract against the public gateway at **https://rpc.nyontra.com**:
+contract against the public gateway at **https://api.nyontra.com**:
 
 - **Local key management** — secp256k1 keypairs; your private key never leaves
   your machine.
@@ -10,9 +10,7 @@ contract against the public gateway at **https://rpc.nyontra.com**:
 - **HTTP client** — `POST` signed transactions to the gateway
   (`/core/v1/tx/broadcast`) and query accounts, balances, and history.
 
-There are **no API keys**: authorization is purely cryptographic. See
-[docs/](../docs/README.md) for the gateway overview, payload schema, and signing
-guide.
+
 
 ## Available languages
 
@@ -32,7 +30,7 @@ npm install @nyontra/sdk
 import { Account, NyontraClient } from "@nyontra/sdk";
 
 const account = Account.generate();
-const client = new NyontraClient({ gatewayUrl: "https://rpc.nyontra.com" });
+const client = new NyontraClient({ gatewayUrl: "https://api.nyontra.com" });
 
 await client.transfer(account, {
   to: "0x2222222222222222222222222222222222222222",
@@ -41,4 +39,4 @@ await client.transfer(account, {
 ```
 
 Full guide: [js/README.md](./js/README.md)
-and [docs/sdk-javascript.md](../docs/sdk-javascript.md).
+and [docs/sdk.mdx](../docs/sdk.mdx).

@@ -15,10 +15,10 @@ import type { SignedTx } from "./transaction.js";
 import { signTx } from "./transaction.js";
 
 /** Default dev-portal backend (gateway) URL. */
-export const DEFAULT_GATEWAY_URL = "https://core.nyontra.com";
+export const DEFAULT_GATEWAY_URL = "https://api.nyontra.com";
 
 export interface NyontraClientOptions {
-  /** Dev Portal Backend (gateway) base URL. Defaults to https://core.nyontra.com. */
+  /** Dev Portal Backend (gateway) base URL. Defaults to https://api.nyontra.com. */
   gatewayUrl?: string;
   /** Developer API key obtained from the Dev Portal. When set, every request
    *  includes an `x-api-key` header so api can authenticate the project
