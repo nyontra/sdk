@@ -1,6 +1,6 @@
 {
   "name": "@nyontra/sdk",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Official Nyontra JavaScript/TypeScript SDK — local secp256k1 key management, canonical transaction signing, and an HTTP client for the api.nyontra.com gateway",
   "type": "module",
   "main": "./dist/index.js",
